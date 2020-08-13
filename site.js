@@ -1,8 +1,8 @@
 const bananaAverageSizeCm = 15;
-const scaleCmPerPixel = 3.3;
-const totalCanvasHeight = 300;
-const marginObject = 5;
-const bananaSize = 50;
+const scaleCmPerPixel = 2;
+const totalCanvasHeight = 260;
+const safeMargim = 5;
+const bananaSize = 30;
 
 function generate() {
 
@@ -41,16 +41,17 @@ function generate() {
 function insertBanana(context) {
     base_image = new Image();
     base_image.src = 'banana.svg';
-    heightInit = totalCanvasHeight - (bananaSize + marginObject);
-    context.drawImage(base_image, 0, 245, bananaSize, bananaSize);
+    heightInit = totalCanvasHeight - (bananaSize + safeMargim);
+    context.drawImage(base_image, 0, heightInit, bananaSize, bananaSize);
 }
 
 function insertObject(context, height, width) {
     heightCalculated = height * scaleCmPerPixel;
     widthCalculated = width * scaleCmPerPixel;
-    heightInit = totalCanvasHeight - (heightCalculated + marginObject);
+    heightInit = totalCanvasHeight - (heightCalculated + safeMargim);
+    marginInit = bananaSize + safeMargim;
 
-    context.fillRect(55, heightInit, widthCalculated, heightCalculated);
+    context.fillRect(marginInit, heightInit, widthCalculated, heightCalculated);
     context.stroke();
 }
 

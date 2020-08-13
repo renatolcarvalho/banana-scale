@@ -1,12 +1,5 @@
 html {
-    height: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-repeat: no-repeat;
     background-color: #FAD961;
-    background-image: linear-gradient(180deg, #FAD961 79%, #F76B1C 100%);
 }
 
 body {
@@ -15,4 +8,5 @@ body {
 
 .card {
     background-color: #f39c12;
+    min-height: 35em;
 }
