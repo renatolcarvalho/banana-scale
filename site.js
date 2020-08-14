@@ -55,6 +55,11 @@ function insertObject(context, height, width) {
     context.stroke();
 }
 
+function cmToBananas(cm) {
+    var banana = (cm/15);
+    return banana.toFixed(2);
+}
+
 function validation(height, width) {
 
     if (!height && !width) {
