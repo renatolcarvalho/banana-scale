@@ -8,5 +8,5 @@ body {
 
 .card {
     background-color: #f39c12;
-    min-height: 35em;
+    min-height: fit-content;
 }
