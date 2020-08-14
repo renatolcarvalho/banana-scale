@@ -33,7 +33,7 @@ function generate() {
 
     var canvas = document.getElementById('myCanvas'),
         context = canvas.getContext('2d');
-    
+
     context.clearRect(0, 0, canvas.width, canvas.height);
     insertBanana(context);
     insertObject(context, height, width);
@@ -48,7 +48,7 @@ function realtimeGenerate() {
 
     var canvas = document.getElementById('myCanvas'),
         context = canvas.getContext('2d');
-    
+
     context.clearRect(0, 0, canvas.width, canvas.height);
     insertBanana(context);
     insertObject(context, height, width);
@@ -71,19 +71,17 @@ function insertObject(context, height, width) {
 
     context.fillRect(marginInit, heightInit, widthCalculated, heightCalculated);
     // Font
-    context.font='10px Arial';
+    context.font = '10px Arial';
     // Height
     context.fillText(heightBananas + 'b', marginInit + widthCalculated + 2, heightInit + heightCalculated);
     // Width
-    context.fillText(widthBananas + 'b',  marginInit, heightInit - 2);
+    context.fillText(widthBananas + 'b', marginInit, heightInit - 2);
 
     context.stroke();
-
-    context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 function cmToBananas(cm) {
-    var banana = (cm/bananaAverageSizeCm);
+    var banana = (cm / bananaAverageSizeCm);
     return banana.toFixed(2);
 }
 
