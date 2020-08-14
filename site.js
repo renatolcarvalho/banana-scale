@@ -32,7 +32,7 @@ function generate() {
 
     var canvas = document.getElementById('myCanvas'),
         context = canvas.getContext('2d');
-
+    
     context.clearRect(0, 0, canvas.width, canvas.height);
     insertBanana(context);
     insertObject(context, height, width);
@@ -48,15 +48,24 @@ function insertBanana(context) {
 function insertObject(context, height, width) {
     heightCalculated = height * scaleCmPerPixel;
     widthCalculated = width * scaleCmPerPixel;
+    heightBananas = cmToBananas(height);
+    widthBananas = cmToBananas(width);
     heightInit = totalCanvasHeight - (heightCalculated + safeMargim);
     marginInit = bananaSize + safeMargim;
 
     context.fillRect(marginInit, heightInit, widthCalculated, heightCalculated);
+    // Font
+    context.font='10px Arial';
+    // Height
+    context.fillText(heightBananas + 'b', marginInit + widthCalculated + 2, heightInit + heightCalculated);
+    // Width
+    context.fillText(widthBananas + 'b',  marginInit, heightInit - 2);
+
     context.stroke();
 }
 
 function cmToBananas(cm) {
-    var banana = (cm/15);
+    var banana = (cm/bananaAverageSizeCm);
     return banana.toFixed(2);
 }
 
