@@ -4,6 +4,7 @@ const totalCanvasHeight = 260;
 const safeMargim = 5;
 const bananaSize = 30;
 
+// To be removed to use real time generate
 function generate() {
 
     toastr.options = {
@@ -38,6 +39,21 @@ function generate() {
     insertObject(context, height, width);
 }
 
+function realtimeGenerate() {
+    var height = document.getElementById('txtHeight').value;
+    var width = document.getElementById('txtWidth').value;
+
+    if (!height || !width)
+        return;
+
+    var canvas = document.getElementById('myCanvas'),
+        context = canvas.getContext('2d');
+    
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    insertBanana(context);
+    insertObject(context, height, width);
+}
+
 function insertBanana(context) {
     base_image = new Image();
     base_image.src = 'banana.svg';
@@ -62,6 +78,8 @@ function insertObject(context, height, width) {
     context.fillText(widthBananas + 'b',  marginInit, heightInit - 2);
 
     context.stroke();
+
+    context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 function cmToBananas(cm) {
@@ -69,6 +87,7 @@ function cmToBananas(cm) {
     return banana.toFixed(2);
 }
 
+// To be removed to use real time generate
 function validation(height, width) {
 
     if (!height && !width) {
