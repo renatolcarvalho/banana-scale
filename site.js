@@ -4,41 +4,6 @@ const totalCanvasHeight = 260;
 const safeMargim = 5;
 const bananaSize = 30;
 
-// To be removed to use real time generate
-function generate() {
-
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
-
-    var height = document.getElementById('txtHeight').value;
-    var width = document.getElementById('txtWidth').value;
-
-    if (!validation(height, width))
-        return;
-
-    var canvas = document.getElementById('myCanvas'),
-        context = canvas.getContext('2d');
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    insertBanana(context);
-    insertObject(context, height, width);
-}
-
 function realtimeGenerate() {
     var height = document.getElementById('txtHeight').value;
     var width = document.getElementById('txtWidth').value;
