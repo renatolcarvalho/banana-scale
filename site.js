@@ -15,8 +15,21 @@ function realtimeGenerate() {
         context = canvas.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+
     insertBanana(context);
     insertObject(context, height, width);
+
+    confetti({
+        particleCount: 200,
+        scalar: 4,
+        shapes: ["text"],
+        shapeOptions: {
+            text: {
+                value: ["🍌"],
+            },
+        },
+    });
 }
 
 function insertBanana(context) {
@@ -27,6 +40,7 @@ function insertBanana(context) {
 }
 
 function insertObject(context, height, width) {
+
     heightCalculated = height * scaleCmPerPixel;
     widthCalculated = width * scaleCmPerPixel;
     heightBananas = cmToBananas(height);
@@ -35,12 +49,42 @@ function insertObject(context, height, width) {
     marginInit = bananaSize + safeMargim;
 
     context.fillRect(marginInit, heightInit, widthCalculated, heightCalculated);
-    // Font
+
+
+    widthBegin = marginInit;
+    widthEnd = marginInit + widthCalculated;
+    widthMiddle = widthEnd / 2;
+
+    heightBegin = heightInit;
+    heightEnd = heightInit + heightCalculated;
+    heightMiddle = (heightBegin + heightEnd) / 2;
+
+    lineSize = 6;
+    lineMiddle = 3;
+
+    // Delimiters Horizontal
+    context.moveTo(widthBegin + 1, heightBegin - lineSize);
+    context.lineTo(widthBegin + 1, heightBegin - 1);
+
+    context.moveTo(widthEnd - 1, heightBegin - lineSize);
+    context.lineTo(widthEnd - 1, heightBegin - 1);
+
+    context.moveTo(widthBegin + 2, heightBegin - lineMiddle);
+    context.lineTo(widthEnd - 2, heightBegin - lineMiddle);
+
+    // Delimiters Vertical
+    context.moveTo(widthEnd + 1, heightBegin + 1);
+    context.lineTo(widthEnd + lineSize, heightBegin + 1);
+
+    context.moveTo(widthEnd + 1, heightEnd - 1);
+    context.lineTo(widthEnd + lineSize, heightEnd - 1);
+
+    context.moveTo(widthEnd + lineMiddle, heightBegin + 2);
+    context.lineTo(widthEnd + lineMiddle, heightEnd - 2);
+
     context.font = '10px Arial';
-    // Height
-    context.fillText(heightBananas + 'b', marginInit + widthCalculated + 2, heightInit + heightCalculated);
-    // Width
-    context.fillText(widthBananas + 'b', marginInit, heightInit - 2);
+    context.fillText(widthBananas + 'b', widthMiddle, heightBegin - lineSize);
+    context.fillText(heightBananas + 'b', widthEnd + lineSize, heightMiddle);
 
     context.stroke();
 }
